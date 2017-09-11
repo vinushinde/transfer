@@ -1,0 +1,503 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="HP Unified Functional Testing" productVer="12.53" os="Windows 7" host="ULTP_722"><DocLocation><![CDATA[E:\Sprint\Scripts\Costco\Login Security and Supplemental Roles\Corporate Authentication\C128786\C128786_Preconditions]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[C128786_Preconditions]]></DName>
+<Res><![CDATA[Res24]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<Action rID="T3">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[Certificate Error: Navigation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA["Certificate Error: Navigation"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (4 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (4 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Certificate Error: Navigation Blocked<SPAN class=Failed> (Skipped)</SPAN><br>title=Enterprise Control Center Login<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>openurl=res://ieframe.dll/invalidcert.htm?SSLError=58720384#https://192.168.109.121:58442/ecc/login.jsp<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Certificate Error: Navigation Blocked<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasstatusbar=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasmenubar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hastoolbar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="8" >
+<Disp><![CDATA["Certificate Error: Navigation"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Enterprise Control Center]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[username.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["visible", True, True, 20000]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="12" >
+<Disp><![CDATA[username.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[username.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["35F"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="15" >
+<Disp><![CDATA[username.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[password.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Hello12345"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="18" >
+<Disp><![CDATA[password.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="20" >
+<Disp><![CDATA[OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:04]]></Time>
+<TimeTick>1500291604</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="23" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="11" >
+<Disp><![CDATA[Enterprise Control Center]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="7" >
+<Disp><![CDATA[Certificate Error: Navigation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Enterprise Pharmacy System]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:09]]></Time>
+<TimeTick>1500291609</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Administration]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:09]]></Time>
+<TimeTick>1500291609</TimeTick>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Application Settings]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:09]]></Time>
+<TimeTick>1500291609</TimeTick>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Application Settings.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:09]]></Time>
+<TimeTick>1500291609</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="28" >
+<Disp><![CDATA[Application Settings.Select]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="10" nRep="27" >
+<Disp><![CDATA[Application Settings]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="10" nRep="26" >
+<Disp><![CDATA[Administration]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Application Settings.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Application Settings;Login Security Settings"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:12]]></Time>
+<TimeTick>1500291612</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="30" >
+<Disp><![CDATA[Application Settings.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[User Authentication Mode.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Corporate Authentication"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:15]]></Time>
+<TimeTick>1500291615</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="32" >
+<Disp><![CDATA[User Authentication Mode.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Save.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:16]]></Time>
+<TimeTick>1500291616</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="34" >
+<Disp><![CDATA[Save.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Save.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["enabled", 0, "0", 20000]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:16]]></Time>
+<TimeTick>1500291616</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="36" >
+<Disp><![CDATA[Save.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Back to Home.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:16]]></Time>
+<TimeTick>1500291616</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="37" >
+<Disp><![CDATA[Back to Home.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Back to Home.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:24]]></Time>
+<TimeTick>1500291624</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="39" >
+<Disp><![CDATA[Back to Home.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Logout.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:29]]></Time>
+<TimeTick>1500291629</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="40" >
+<Disp><![CDATA[Logout.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Logout.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:29]]></Time>
+<TimeTick>1500291629</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="42" >
+<Disp><![CDATA[Logout.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Username.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["visible", 1, "1", 20000]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:34]]></Time>
+<TimeTick>1500291634</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="44" >
+<Disp><![CDATA[Username.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Username.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["35F"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:34]]></Time>
+<TimeTick>1500291634</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="46" >
+<Disp><![CDATA[Username.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Password.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["asdfg123"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:34]]></Time>
+<TimeTick>1500291634</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="48" >
+<Disp><![CDATA[Password.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:34]]></Time>
+<TimeTick>1500291634</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="49" >
+<Disp><![CDATA[OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:34]]></Time>
+<TimeTick>1500291634</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="51" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[Login Information Incorrect.]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:42]]></Time>
+<TimeTick>1500291642</TimeTick>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Either user name or password]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaStaticText]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:42]]></Time>
+<TimeTick>1500291642</TimeTick>
+<HtmlStep rID="T31">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Text Checkpoint "Either user name or password was incorrect. Please try again.(st)": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17-07-2017 - 17:10:42</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<span class="text"></span><span class="text">Text Checkpoint: captured </span><span  class="Passed">"Either user name or password was incorrect. Please try again."</span><span  class="text"><br>
+</span><span  class="text">Match case: OFF<br>
+</span><span  class="text">Exact match: OFF<br>
+</span><span  class="text">Ignore spaces: ON</span></body></html>]]></HTML>
+<TimeTick>1500291642</TimeTick>
+<NodeArgs eType="Verification" icon="16" nRep="54" status="Passed" >
+<Disp><![CDATA[Checkpoint "Either user name or password was incorrect. Please try again.(st)"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="16" nRep="53" status="Passed" >
+<Disp><![CDATA[Either user name or password]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Login Information Incorrect..Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:42]]></Time>
+<TimeTick>1500291642</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="55" >
+<Disp><![CDATA[Login Information Incorrect..Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:42]]></Time>
+<TimeTick>1500291642</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="57" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="15" nRep="52" status="Passed" >
+<Disp><![CDATA[Login Information Incorrect.]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Username.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["visible", 1, "1", 20000]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:47]]></Time>
+<TimeTick>1500291647</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="59" >
+<Disp><![CDATA[Username.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Username.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["35F"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:47]]></Time>
+<TimeTick>1500291647</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="61" >
+<Disp><![CDATA[Username.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Password.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Hello12345"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:47]]></Time>
+<TimeTick>1500291647</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="63" >
+<Disp><![CDATA[Password.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:47]]></Time>
+<TimeTick>1500291647</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="64" >
+<Disp><![CDATA[OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:47]]></Time>
+<TimeTick>1500291647</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="66" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="25" status="Passed" >
+<Disp><![CDATA[Enterprise Pharmacy System]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj ><![CDATA[Preconditions]]></Obj>
+<Details ><![CDATA[All preconditions have been setup]]></Details>
+<Time><![CDATA[17-07-2017 - 17:10:49]]></Time>
+<TimeTick>1500291649</TimeTick>
+<NodeArgs eType="User" icon="17" nRep="67" Source="Action1" SourceLine="62" >
+<Disp><![CDATA[Preconditions]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17-07-2017 - 17:09:43" eTime="17-07-2017 - 17:10:49" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="3" nRep="6" status="Passed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Summary sTime="17-07-2017 - 17:09:42" eTime="17-07-2017 - 17:10:49" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Passed" >
+<Disp><![CDATA[Test C128786_Preconditions Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
